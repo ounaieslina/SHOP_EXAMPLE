@@ -21,7 +21,7 @@ class SQLHelper {
     });
   }
 
-  static Future<int> createItem(String title, String description) async {
+  static Future<int> createItem(String Email, String password) async {
     final db = await SQLHelper.db();
     final data = {'Email': Email, 'password': password};
     final id = await db.insert('Items', data, conflictAlgorithm: ConflictAlgorithm.replace);
@@ -38,7 +38,7 @@ class SQLHelper {
     return db.query('Items', where: "id = ?", whereArgs: [id], limit: 1);
   }
 
-  static Future<int> updateItem(int id, String title, String description) async {
+  static Future<int> updateItem(int id, String Email, String password) async {
     final db = await SQLHelper.db();
     final data = {'Email': Email, 'password': password, 'createdAt': DateTime.now().toString()};
     final result = await db.update('Items', data, where: "id = ?", whereArgs: [id]);
