@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
+import '../sql_helper.dart';
+
 class CreateAccountForm extends StatelessWidget {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,6 +63,7 @@ class CreateAccountForm extends StatelessWidget {
                   );
                 },
                 child: TextField(
+                  controller: emailController,
                   decoration: InputDecoration(
                     labelText: 'Email',
                   ),
@@ -76,6 +81,7 @@ class CreateAccountForm extends StatelessWidget {
                   );
                 },
                 child: TextField(
+                  controller: passwordController,
                   obscureText: true,
                   decoration: InputDecoration(
                     labelText: 'Password',
@@ -94,8 +100,12 @@ class CreateAccountForm extends StatelessWidget {
                   );
                 },
                 child: ElevatedButton(
-                  onPressed: () {
-                    // Logique de création de compte
+                  onPressed: () async{
+                    String email = emailController.text;
+                    String password = passwordController.text;
+                    int id = await SQLHelper.createItem(email, password);
+                    debugPrint('New item created with ID: $id');
+                    // Ajoutez ici la logique pour rediriger l'utilisateur vers une nouvelle page, par exemple, après la création de compte réussie.
                   },
                   child: Text('Create Account'),
                 ),
