@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shop_example/screens/cart_screen.dart';
 import 'package:shop_example/screens/home_screen.dart';
-import 'package:shop_example/screens/login_screen.dart'; // Importez la page de connexion
+import 'package:shop_example/screens/Signup.dart'; // Importez la page de connexion
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);

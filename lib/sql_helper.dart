@@ -12,7 +12,11 @@ class SQLHelper {
     )
     """);
   }
-
+  static Future<bool> checkCredentials(String phone, String password) async {
+    final db = await SQLHelper.db();
+    final data = await db.query('Items', where: "Email = ? AND password = ?", whereArgs: [phone, password]);
+    return data.isNotEmpty;
+  }
   static Future<Database> db() async {
     var databasePath = await getDatabasesPath();
     String path = join(databasePath, 'demo.db');

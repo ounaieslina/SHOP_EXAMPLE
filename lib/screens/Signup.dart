@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../sql_helper.dart';
+import 'SignIn.dart';
 
 class CreateAccountForm extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
@@ -105,8 +106,10 @@ class CreateAccountForm extends StatelessWidget {
                     String password = passwordController.text;
                     int id = await SQLHelper.createItem(email, password);
                     debugPrint('New item created with ID: $id');
-                    // Ajoutez ici la logique pour rediriger l'utilisateur vers une nouvelle page, par exemple, après la création de compte réussie.
-                  },
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => SignIn()),
+                    );                  },
                   child: Text('Create Account'),
                 ),
               ),
